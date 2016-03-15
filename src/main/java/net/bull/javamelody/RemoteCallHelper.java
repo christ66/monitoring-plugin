@@ -123,16 +123,16 @@ final class RemoteCallHelper {
 		DelegatingTask(Callable<T, Throwable> delegate) {
 			super();
 			this.delegate = delegate;
-			this.locale = I18N.getCurrentLocale();
+			this.locale = net.bull.javamelody.I18N.getCurrentLocale();
 		}
 
 		@Override
 		public T call() throws Throwable {
-			I18N.bindLocale(locale);
+            net.bull.javamelody.I18N.bindLocale(locale);
 			try {
 				return delegate.call();
 			} finally {
-				I18N.unbindLocale();
+                net.bull.javamelody.I18N.unbindLocale();
 			}
 		}
 	}
@@ -213,7 +213,7 @@ final class RemoteCallHelper {
 			}
 		}
 		if (heapHistoTotal == null) {
-			throw new IllegalStateException(I18N.getString("heap_histo_non_supporte"));
+			throw new IllegalStateException(net.bull.javamelody.I18N.getString("heap_histo_non_supporte"));
 		}
 		return heapHistoTotal;
 	}
